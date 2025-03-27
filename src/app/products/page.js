@@ -1,4 +1,6 @@
 // 'use client'
+import DeleteProduct from '@/util/DeleteProduct';
+import Link from 'next/link';
 import React from 'react'
 const getProducts = async () => {
     try {
@@ -12,6 +14,7 @@ const getProducts = async () => {
 
 const page = async () => {
     let products = await getProducts()
+
     return (
         <div>
             <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
@@ -25,6 +28,7 @@ const page = async () => {
                             <th style={{ padding: "10px", border: "1px solid #ddd" }}>Company</th>
                             <th style={{ padding: "10px", border: "1px solid #ddd" }}>Category</th>
                             <th style={{ padding: "10px", border: "1px solid #ddd" }}>Color</th>
+                            <th style={{ padding: "10px", border: "1px solid #ddd" }}>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,6 +40,10 @@ const page = async () => {
                                 <td style={{ padding: "10px", border: "1px solid #ddd" }}>{product.company}</td>
                                 <td style={{ padding: "10px", border: "1px solid #ddd" }}>{product.category}</td>
                                 <td style={{ padding: "10px", border: "1px solid #ddd" }}>{product.color}</td>
+                                <td style={{ padding: "10px", border: "1px solid #ddd", display: "flex", gap: 10 }}>
+                                    <Link href={`products/${product._id}`} >Edit</Link>
+                                    <DeleteProduct id={product._id}/>
+                                </td>
                             </tr>
                         ))}
                     </tbody>

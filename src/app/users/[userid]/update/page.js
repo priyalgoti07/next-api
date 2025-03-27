@@ -9,6 +9,7 @@ const page = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [age, setAge] = useState("");
+    
     const handleUpdate = async () => {
         console.log(name, age, email)
         let result = await fetch(`http://localhost:3000/api/users/${id}`, { method: 'PUT', body: JSON.stringify({ name, age, email }) })
