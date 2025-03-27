@@ -4,16 +4,16 @@ import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 
 export async function GET() {
-
+    let success = true;
     let data = []
     try {
         await mongoose.connect(connectionStr)
         data = await Product.find()
-        console.log("data", data)
     } catch (error) {
-        data = { success: false }
+        data = { result: "Error" }
+        success = false;
     }
-    return NextResponse.json({ result: data }, { success: true })
+    return NextResponse.json({ result: data ,success})
 }
 
 export async function POST(request) {

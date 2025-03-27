@@ -1,4 +1,5 @@
 'use client'
+import Link from 'next/link';
 import React, { useState } from 'react';
 
 const Page = () => {
@@ -10,10 +11,11 @@ const Page = () => {
 
     const handleSave = async () => {
         //Basic validation
-        if (!name.trim() || !name.price || !name.company | !name.category || !name.color) {
+        if (!name.trim() || !price.trim() || !company.trim() | !category.trim() || !color.trim()) {
             alert("All fileds are required");
             return
         }
+
         console.log(name, price, company, category, color);
         let response = await fetch('http://localhost:3000/api/products', { method: "Post", body: JSON.stringify({ name, price, company, category, color }) })
         let data = await response.json()
@@ -126,6 +128,23 @@ const Page = () => {
             >
                 Add Product
             </button>
+            <br />
+            <Link
+                href={"/"}
+                style={{
+                    width: '320px',
+                    padding: '10px',
+                    backgroundColor: '#007bff',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '5px',
+                    cursor: 'pointer',
+                    fontSize: '16px',
+                    textAlign: 'center'
+                }}
+            >
+                Back to Home
+            </Link>
         </div>
     );
 };
